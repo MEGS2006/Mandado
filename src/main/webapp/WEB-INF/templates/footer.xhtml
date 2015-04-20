@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <!-- Begin Footer   ================================================ -->
+        <footer class="footer">
+            <div class="container">
+                <p class="inline">
+                    #{messages.app_name}<small>versão #{message.versaoSistema}</small>
+                </p>
+            </div>
+        </footer>
+        <!-- End Footer ================================================== -->
+        <!-- O javascript colocado no final para o documento carregar mais rápido -->
+
+
+        <h:outputScript library="js" name="bootstrap.js"/>
+        <h:outputScript library="js" name="prf.js" />
+        <h:outputScript library="js" name="calendar.js" />
+        <h:outputScript library="javax.faces" name="jsf.js" />
+        <h:outputScript library="js" name="faleconosco.js" />
+
+        <!-- Modal de loading -->
+        <ui:include src="/WEB-INF/templates/loading.xhtml"/>
+
+    </ui:composition>
+</html>

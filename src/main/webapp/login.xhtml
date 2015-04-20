@@ -1,0 +1,71 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <a href="WEB-INF/templates/faleConoscoDialogo.xhtml"></a>
+    <h:head>        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>#{message.nomeSistema}</title>
+        <h:outputStylesheet name="prf-sistemas-internos.css" library="css" />
+    </h:head>
+    <h:body>
+        <div class="navbar navbar-inverse fixed">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="brand-content">
+                        <h:link class="brand"></h:link>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h:form style="margin: 0; padding: 0;">
+            <div class="menu-nav fixed">
+                <ul class="nav inline">
+                    <li class="active"><p:commandLink onclick="PF('faleconoscoDlg').show();"><i class="icon-envelope-alt"/> Fale Conosco</p:commandLink></li>
+                </ul>
+            </div>
+        </h:form>
+        <div class="container-fluid" id="main-container">
+            <div id="page-content" class="clearfix fixed">
+                <div id="main-content" class="clearfix">
+                    <br/>
+                    <br/>
+                    <div class="row-fluid">
+                        <div class="span7">
+                            <div class="span2 text-center">
+                                <img
+                                    src="#{facesContext.externalContext.requestContextPath}/resources/images/prf-brasao-login.png"
+                                    width="70" height="84" />
+                            </div>
+                            <div class="page-header position-relative clearfix span10">
+                                <h1>#{message.nomeSistema}</h1>
+                            </div>
+                            <h5>#{message.descricaoSistema}</h5>
+                        </div>
+                        <div class="span4">
+                            <div class="well">
+                                <span class="span12 page-header"><h4>#{message.siglaSistema}</h4></span>
+                                <form jsf:id="login" class="clearfix">
+                                    <p:messages/>
+                                    <p:inputText placeholder="CPF..." styleClass="span12" required="true"  id="username" value="#{securityMB.usuario}"/> 
+                                    <br/>
+                                    <p:password placeholder="Senha..." styleClass="span12" required="true" id="password" value="#{securityMB.senha}"/>
+                                    <br/>
+                                    <p:commandButton styleClass="ui-priority-primary" update="login" value="Entrar" action="#{securityMB.login()}"/>
+                                    <br/>
+                                    <br/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ui:include src="/WEB-INF/templates/footer.xhtml" />
+        <ui:include src="/WEB-INF/templates/faleConoscoDialogo.xhtml" />
+    </h:body>
+</html>
+

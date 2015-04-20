@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{message.nomeSistema}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="prf-sistemas-internos.css" library="css" />
+    </h:head>
+
+    <h:body>
+        <div class="navbar navbar-inverse fixed">
+            <div class="navbar-inner">
+                <div class="container">
+                    <div class="brand-content">
+                        <a class="brand" href="/index.xhtml"></a>
+                    </div>
+                    <span class="nome-sistema">#{message.nomeSistema}</span>
+                    <div class="login-sistema">
+                        <h:form id="formLogout" style="margin: 0; padding: 0;">
+                            <div class="btn-group btn-group-user">
+                                <a class="btn btn-user dropdown-toggle " data-toggle="dropdown" href="#"><i class="icon-user"></i> #{securityMB.usuarioLogin.nome} <span class="caret"></span></a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><h:commandLink value="Sair" action="#{securityMB.logout}" /></li>
+                                </ul>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="container-fluid" id="main-container">
+            <!-- Menu principal lateral -->
+            <h:form style="margin: 0; padding: 0;">
+                <div id="sidebar" class="fixed">
+                    <ul class="nav nav-list nav-open">
+                        <li><a href="#" class="fechar-sidebar">
+                                <i class="icon-reorder"></i> Fechar menu </a>
+                        </li>
+                        <li><h:link outcome="/index.xhtml">
+                                <i class="icon-home"></i>Início
+                            </h:link>
+                        </li>
+
+
+                        <li><a href="#" class="dropdown-toggle"> <i
+                                    class="icon-user"></i>Pessoa<b class="arrow icon-angle-down"></b></a>
+                            <ul class="submenu">
+                                <li><h:link outcome="/pessoa/list.xhtml">
+                                        <i class="icon-double-angle-right"></i>Listar
+                                    </h:link></li>
+                                <li><h:link outcome="/pessoa/edit.xhtml">
+                                        <i class="icon-double-angle-right"></i>Novo
+                                    </h:link></li>
+                            </ul></li>
+                        <li><a href="#" class="dropdown-toggle"> <i
+                                    class="icon-map-marker"></i>Município<b class="arrow icon-angle-down"></b></a>
+                            <ul class="submenu">
+                                <li><h:link outcome="/municipio/list.xhtml">
+                                        <i class="icon-double-angle-right"></i>Listar
+                                    </h:link></li>
+                                <li><h:link outcome="/municipio/edit.xhtml">
+                                        <i class="icon-double-angle-right"></i>Novo
+                                    </h:link></li>
+                            </ul></li>
+                        <li><h:link outcome="/veiculo/consulta.xhtml">
+                                <i class="icon-home"></i>Consulta Veículo
+                            </h:link></li>
+
+
+                    </ul>
+                    <ul class="nav nav-list nav-close" style="display: none">
+                        <li><a href="#" class="fechar-sidebar"><i
+                                    class="icon-reorder"></i> Abrir menu</a></li>
+                    </ul>
+                </div>
+            </h:form>
+            <div id="main-content" class="clearfix">
+                <h:form style="margin: 0; padding: 0;">
+                    <div class="menu-nav fixed">
+                        <ul class="nav inline">
+                            <li class="active"><p:commandLink onclick="PF('faleconoscoDlg').show();">
+                                    <i class="icon-envelope-alt" /> Fale Conosco
+                                </p:commandLink></li>
+                        </ul>
+                    </div>
+                </h:form>
+                <div id="page-content" class="clearfix fixed">
+                    <h:panelGroup layout="block" id="content">
+                        <ui:insert name="corpo" />
+                    </h:panelGroup>
+                </div>
+            </div>
+        </div>
+    </h:body>
+    <ui:include src="/WEB-INF/templates/footer.xhtml" />
+    <ui:include src="/WEB-INF/templates/faleConoscoDialogo.xhtml" />   
+    <ui:remove>
+        <!-- Begin Footer   ================================================ -->
+        <footer class="footer">
+            <div class="container">
+                <p class="inline">
+                    #{messages.app_name}<small>versão #{message.versaoSistema}</small>
+                </p>
+            </div>
+        </footer>
+        <!-- End Footer ================================================== -->
+        <!-- O javascript colocado no final para o documento carregar mais rápido -->
+
+        <h:outputScript library="js" name="bootstrap.js" />
+        <h:outputScript library="js" name="prf.js" />
+        <h:outputScript library="js" name="calendar.js" />
+
+
+        <!-- Modal de loading -->
+        <p:ajaxStatus onstart="PF('loading').show()" onsuccess="PF('loading').hide()" />
+        <p:dialog widgetVar="loading" showHeader="false" draggable="false"
+                  closable="false" resizable="false">
+            <h:panelGroup layout="block">
+                <i class="icon-spinner icon-spin icon-large" /> Aguarde...
+            </h:panelGroup>
+        </p:dialog>
+    </ui:remove>
+</html>

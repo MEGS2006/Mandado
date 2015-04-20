@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <p:ajaxStatus onstart="PF('loading').show()" onsuccess="PF('loading').hide()" />  
+        <p:dialog widgetVar="loading" showHeader="false" draggable="false" closable="false" resizable="false">  
+            <div>
+                <i class="icon-spinner icon-spin icon-large" /> Aguarde...
+            </div>
+        </p:dialog>  
+    </ui:composition>
+</html>
